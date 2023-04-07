@@ -9,3 +9,18 @@ To run the ServerChat, follow these steps:
  - Open the main files
  - Run the file using the IDE's run command
  - Run the file and follow the prompts
+
+## Other Resources
+
+- random
+- JSONObject
+- IOException
+- HashMap
+- Map
+- ArrayList
+- HashSet
+- Set
+- jakarta.websocket
+- jakarta.servlet.http
+- jakarta.servlet.annotation
+- RandomStringUtils
