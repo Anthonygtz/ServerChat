@@ -1,0 +1,358 @@
+/*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
+
+/* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
+
+/*
+ * Extends the .sr-only class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.sr-only.focusable:active,
+.sr-only.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: #fff !important;
+    color: #000 !important;
+    /* Black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /*
+   * Printing Tables:
+   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+   */
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+body{ /* for the body text of the html*/
+  font-family: Arial;  /* set the font to arial*/
+}
+
+.large-image{ /* attributes for a large image on the html page*/
+  width: 300px; /* set the width to 300 pixels*/
+  height: 300px; /* set the height to 300 pixels*/
+  display: block; /* set the display type to block*/
+  margin-left: auto; /* automatically set left margins*/
+  margin-right: auto; /* automatically set right margins*/
+}
+
+#header h1{ /* design attributes for the header*/
+  background-color: darkblue; /* set the background color to darkblue*/
+  text-align: center; /* align the text into the center*/
+  color: white; /* set the color of the text to white*/
+  margin-top: 0; /* set the top margin to 0*/
+  margin-bottom: 10px; /* set the bottom margin to 10 pixels*/
+}
+
+#credits{ /* design attributes for the credits*/
+  margin: 100px; /* set the margin to 100 pixels*/
+  text-align: center; /* align the text in the center*/
+}
+
+p_about{ /* design attributes for the paragraphs in the about page*/
+  font-size: 25px; /* set the font size to 25*/
+}
+
+p{ /* design attributes for the paragraphs in the dashboard page*/
+  font-size: 20px; /* set the font size to 20 pixels*/
+}
+
+f{ /* design attributes for the footer of the site*/
+  font-size: 15px; /* set the font size to 15 pixels*/
+}
+
+ul { /* design attributes for table*/
+  padding-left: 0; /* set the padding to 0*/
+  list-style-position: inside; /* set the list style to be inside the table*/
+}
+
+.dbcol{ /* design attributes for the columns of the table*/
+  display: block; /* set the display to a block style*/
+  column-gap: 10em; /* set the gap between columns to 10*/
+}
+
+.col { /* design attributes for each column in the table*/
+  flex: 1; /* additionally, equal width */
+
+  padding-top: 1em; /* set top padding to 1*/
+  padding-right: 10em; /* set bottom padding to 10*/
+  border: solid; /* create a solid border*/
+}
+
+.block { /* design attributes for the hyperlink buttons*/
+  display: flex; /*set the display to a flexbox */
+  width: 10%;/* set width to 10%*/
+  border: none;/* show no border*/
+  background-color: darkblue;/* set background color to darkblue*/
+  color: white;/* set font color to white*/
+  padding: 14px 10px;/* set padding*/
+  font-size: 16px;/* set fontsize to 16*/
+  cursor: pointer;/* display pointer cursor when hovering over button*/
+  text-align: left;/* align text left*/
+}
+
+.footer {/* design attributes for the footer*/
+  position: fixed;/* set the position to fixed*/
+  left: 0;/* keeps footer at the bottom of the screen*/
+  bottom: 0;/* keeps footer at the bottom of the screen*/
+  width: 100%;/* sets width across the screen*/
+  background-color: darkblue;/* sets the background color to darkblue*/
+  color: white;/* set the font color to white*/
+  text-align: center;/* align text center of screen*/
+  height: 25px;/* set height of footer to 25 pixels*/
+}
+
+.red /*red class*/
+{
+  background-color: red;/*sets the background colour to red*/
+}
+
+.green /*green class*/
+{
+  background-color: green; /*sets the background colour to green*/
+}
+
+.blue /*blue class*/
+{
+  background-color: blue; /*sets the background colour to blue*/
+}
+
+table, th, td{/* design attributes for the table*/
+  color: white;/* set font color to white*/
+  border: 1px solid black;/* set border to a solid black line*/
+}
+
+.center{/* design attribute to center image on screen*/
+  margin-left: auto;/* automatically set left margin*/
+  margin-right: auto;/* automatically set right margin*/
+}

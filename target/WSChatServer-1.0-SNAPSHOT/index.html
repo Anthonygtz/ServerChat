@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Chat Server</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<!-- Add your site or application content here -->
+<section id="header">  <!-- create a section for the header of the site -->
+  <h1>Chat server</h1> <!-- display header -->
+</section>
+
+<a href="index.html"> <!-- creates button that sends the user back to the dashboard html page -->
+  <button class="block">> Dashboard</button><!-- calls the styles made in the class "block" as seen in the .css file to make a button that will send the user back to the dashboard-->
+</a>
+
+<a href="about.html"> <!-- creates button that sends the user back to the about html page-->
+  <button class="block">> About</button> <!-- calls the styles made in the class "block" as seen in the .css file to make a button that will send the user to the about section of the page-->
+</a>
+
+<div class="footer"> <!-- div for the footer of the site-->
+  <f>Copyright © CSCI 2020U - Winter 2023</f> <!-- display copyright information-->
+</div>
+
+<!-- Add your site or application content here -->
+<div id="room">
+  <input type="text" id="room-code" class = "invisible" style="position: absolute; bottom: 0; right: 0; width: 100px; text-align:right;">
+  <button id="btRoom" onclick="newRoom()">ENTER/ADD NEW ROOM</button>
+</div>
+<textarea title="Chat Log" id="log" readonly
+          style="display: block; width: 50%; height: 600px; resize: none; margin-left: auto; margin-right: auto; padding: 0; border-width: 5px 5px 5px 5px;"></textarea>
+
+<input title="Chat Input" id="input" placeholder="Type Here!" type="text" style="display: block; width: 50%; margin-left: auto; margin-right: auto; border-width: 1px 1px 1px 1px; padding-top: 20px"
+       autofocus/>
+
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+</html>
