@@ -1,5 +1,7 @@
 # ServerChat
 
+Group Members: Almas Alam, Anthony Gutierrez, Justin Li
+
 A web-based chat server that employs websockets and JSON messaging to enable confidential communication between users across various chat rooms. The project implements and designs a server application that is capable of overseeing multiple chat rooms, enabling users to join or leave them at will. The server facilitates the exchange of messages between clients within each chat room while maintaining user privacy and security.
 
 ## How to Run
