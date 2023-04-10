@@ -1,5 +1,5 @@
 package com.example.webchatserver;
-import java.util.Random;
+import java.util.*;
 
 
 import jakarta.websocket.*;
@@ -8,8 +8,6 @@ import jakarta.websocket.server.ServerEndpoint;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -18,42 +16,67 @@ import java.util.Map;
 @ServerEndpoint(value="/ws/{roomID}")
 public class ChatServer {
 
-    // contains a static List of ChatRoom used to control the existing rooms and their users
+    //This contains a static List of ChatRoom which is used to control the existing rooms and their users
 
     // you may add other attributes as you see fit
     private Map<String, String> usernames = new HashMap<String, String>();
     private static Map<String, String> roomList = new HashMap<String, String>();
 
-
     @OnOpen
     public void open(@PathParam("roomID") String roomID, Session session) throws IOException, EncodeException {
+        String uniqueCode; //This is the variable for room code
 
-        // Generate a unique 6-letter code for the roomID
-        String uniqueCode = generateUniqueCode();
+        if(roomList.containsKey(roomID)){ // this is incase the room already exists if so it uses its existing room code
+            uniqueCode = roomList.get(roomID); //This sets the room code to the one in the map
+        }else{ // otherwise it will generate a new unique code
+            uniqueCode = roomID; //this sets the code to the roomID code
+            roomList.put(roomID, uniqueCode); //put it in the hashmap
+            System.out.println("Room created with unique code " + uniqueCode); //displays the message in the console
+        }
 
-        session.getBasicRemote().sendText("First sample message to the client");
-
-        // Print the generated roomID
-        System.out.println(uniqueCode);
-
-        roomList.put(session.getId(), uniqueCode); // adding userID to a room
+        roomList.put(session.getId(), uniqueCode); // The code to adding userID to a room
 
         System.out.println("Room joined ");
 
+        String output = stringOutput();
+
+        //Gives us various messages to the client  in order to display
         session.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Room " + uniqueCode + "): Welcome to the chat room. Please state your username to begin.\"}");
+        session.getBasicRemote().sendText("{\"type\": \"title\", \"message\":\"You are in room: " + uniqueCode + "\"}");
+        session.getBasicRemote().sendText(output);
     }
 
-    private String generateUniqueCode() {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        StringBuilder codeBuilder = new StringBuilder();
-        Random rnd = new Random();
-        while (codeBuilder.length() < 5) {
-            int index = (int) (rnd.nextFloat() * characters.length());
-            codeBuilder.append(characters.charAt(index));
+    public String stringOutput()
+    {
+        Set<String> stringSet = new HashSet<>();
+        StringBuilder stringBuilder = new StringBuilder();
+        List<String> roomslist = new ArrayList<>();
+        
+        for (Map.Entry<String, String> entry : roomList.entrySet())
+        {
+            String value = entry.getValue();
+            if (!stringSet.contains(value))
+            {
+                stringSet.add(value);
+                roomslist.add(value);
+            }
         }
-        String code = codeBuilder.toString();
-        return code;
+
+        stringBuilder.append("{\" type \": \" rooms \", \" message \": [");
+        for (String room : roomslist)
+        {
+            stringBuilder.append("\"").append(room).append("\",");
+        }
+
+        if (stringBuilder.charAt(stringBuilder.length() - 1) == ',')
+        {
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        }
+        stringBuilder.append("]}");
+
+        return stringBuilder.toString();
     }
+
 
 
     @OnClose
@@ -71,7 +94,7 @@ public class ChatServer {
             int countPeers = 0;
             for (Session peer : session.getOpenSessions()){ //broadcast this person left the server
                 if(roomList.get(peer.getId()).equals(roomID)) { // broadcast only to those in the same room
-                    peer.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Server): " + username + " left the chat room.\"}");
+                    peer.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Room " + roomID+ "): " + username + " left the chat room.\"}");
                     countPeers++; // count how many peers are left in the room
                 }
             }
@@ -86,10 +109,6 @@ public class ChatServer {
         JSONObject jsonmsg = new JSONObject(comm);
         String type = (String) jsonmsg.get("type");
         String message = (String) jsonmsg.get("msg");
-//        Example conversion of json messages from the client
-        //        JSONObject jsonmsg = new JSONObject(comm);
-//        String val1 = (String) jsonmsg.get("attribute1");
-//        String val2 = (String) jsonmsg.get("attribute2");
 
         // handle the messages
         if(usernames.containsKey(userID)){ // not their first message
@@ -100,19 +119,19 @@ public class ChatServer {
             for(Session peer: session.getOpenSessions()){
                 // only send my messages to those in the same room
                 if(roomList.get(peer.getId()).equals(roomID)) {
-                    peer.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(" + username + "): " + message + "\"}");
+                    peer.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(" + roomID + ", "+ username + "): " + message + "\"}");
                 }
             }
         }else{ //first message is their username
             usernames.put(userID, message);
-            session.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Server ): Welcome, " + message + "!\"}");
+            session.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Room " +roomID +"): Welcome, " + message + "!\"}");
 
 
             // broadcasting it to peers in the same room
             for(Session peer: session.getOpenSessions()){
                 // only announce to those in the same room as me, excluding myself
                 if((!peer.getId().equals(userID)) && (roomList.get(peer.getId()).equals(roomID))){
-                    peer.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Server): " + message + " joined the chat room.\"}");
+                    peer.getBasicRemote().sendText("{\"type\": \"chat\", \"message\":\"(Room " +roomID +"): " + message + " joined the chat room.\"}");
                 }
             }
         }

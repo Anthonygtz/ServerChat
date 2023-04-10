@@ -25,7 +25,7 @@
 <body>
 <!-- Add your site or application content here -->
 <section id="header">  <!-- create a section for the header of the site -->
-  <h1>Chat server</h1> <!-- display header -->
+  <h1>Chat Server Copyright © CSCI 2020U - Winter 2023</h1> <!-- display header -->
 </section>
 
 <a href="index.html"> <!-- creates button that sends the user back to the dashboard html page -->
@@ -36,20 +36,34 @@
   <button class="block">> About</button> <!-- calls the styles made in the class "block" as seen in the .css file to make a button that will send the user to the about section of the page-->
 </a>
 
-<div class="footer"> <!-- div for the footer of the site-->
-  <f>Copyright © CSCI 2020U - Winter 2023</f> <!-- display copyright information-->
-</div>
-
 <!-- Add your site or application content here -->
+
+<!-- Div that contains the button for the creation of a new room, along with a refresh button -->
 <div id="room">
   <input type="text" id="room-code" class = "invisible" style="position: absolute; bottom: 0; right: 0; width: 100px; text-align:right;">
-  <button id="btRoom" onclick="newRoom()">ENTER/ADD NEW ROOM</button>
+  <button id="btRoom" onclick="newRoom()">ADD NEW ROOM</button>
+  <button id="refresh" onclick="refresh()">Refresh Page</button>
 </div>
+
+<!-- Textarea that displays the current chat room the user is in -->
+<textarea title="Chat Log" id="title" readonly
+          style="display: block; width: 50%; height: 20px; resize: none; margin-left: auto; margin-right: auto; padding: 0; border-width: 5px 5px 5px 5px;"></textarea>
+
+<!-- Textarea that displays the current chat log for the room the user is in-->
 <textarea title="Chat Log" id="log" readonly
           style="display: block; width: 50%; height: 600px; resize: none; margin-left: auto; margin-right: auto; padding: 0; border-width: 5px 5px 5px 5px;"></textarea>
 
-<input title="Chat Input" id="input" placeholder="Type Here!" type="text" style="display: block; width: 50%; margin-left: auto; margin-right: auto; border-width: 1px 1px 1px 1px; padding-top: 10px"
+<!-- Input for user to write chat into -->
+<input title="Chat Input" id="input" placeholder="Type Here!" type="text" style="display: block; width: 50%; margin-left: auto; margin-right: auto; border-width: 1px 0 1px 0;"
        autofocus/>
+
+<!-- title for existing chatrooms -->
+<b><u><br><br>Want to enter an existing chatroom? Click the one you want from here!</u></b>
+
+<!-- list of existing chatrooms (buttons that will be created dynamically) -->
+<div id="room-list">
+  <!-- Room list will be populated dynamically -->
+</div>
 
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
