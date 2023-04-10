@@ -1,8 +1,5 @@
 # ServerChat
-<<<<<<< HEAD
 
-=======
->>>>>>> e85c62d859bf3e3c6fafa2dc272df4c76c822702
 A web-based chat server that employs websockets and JSON messaging to enable confidential communication between users across various chat rooms. The project implements and designs a server application that is capable of overseeing multiple chat rooms, enabling users to join or leave them at will. The server facilitates the exchange of messages between clients within each chat room while maintaining user privacy and security.
 
 ## How to Run
@@ -28,8 +25,3 @@ Libraries:
 - jakarta.websocket
 - jakarta.servlet.http
 - jakarta.servlet.annotation
-<<<<<<< HEAD
-- RandomStringUtils
-=======
-- RandomStringUtils
->>>>>>> e85c62d859bf3e3c6fafa2dc272df4c76c822702
